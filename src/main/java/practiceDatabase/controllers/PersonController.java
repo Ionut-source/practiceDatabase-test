@@ -31,7 +31,14 @@ public class PersonController {
     @DeleteMapping(path = "{personId}")
     public void deletePerson(@PathVariable("personId") Long personId) {
         personService.deletePerson(personId);
+    }
 
+    @PutMapping(path = "{personId}")
+    public void updatePerson(
+            @PathVariable ("personId") Long personId,
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String email){
+    personService.updatePerson(personId, firstName, email);
     }
 
 }

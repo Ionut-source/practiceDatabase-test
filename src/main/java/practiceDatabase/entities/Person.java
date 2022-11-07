@@ -3,30 +3,40 @@ package practiceDatabase.entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-import static javax.persistence.GenerationType.SEQUENCE;
+import static javax.persistence.GenerationType.AUTO;
 
 @Entity
 @Table
 public class Person {
     @Id
-    @SequenceGenerator(name = "person_sequence", sequenceName = "person_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = SEQUENCE, generator = "person_sequence")
+    @GeneratedValue(strategy = AUTO)
     private Long id;
+
     @Column(name = "first_name")
     private String firstname;
+
     @Column(name = "last_name")
     private String lastname;
+
     @Column(name = "email")
     private String email;
+
     @Column(name = "gender")
     private String gender;
+
     @Column(name = "date_Of_Birth")
     private LocalDate dateOfBirth;
+
     @Column(name = "country_of_birth")
     private String countryOfBirth;
+
     @Column(name = "age")
     @Transient
     private Integer age;
+
+    @OneToOne
+    @JoinColumn(name = "person_address")
+    private Address address;
 
     public Person() {
     }
